@@ -22,4 +22,26 @@ public class CustomList {
         this.customList = reversedList;
         return String.join(" ",this.customList);
     }
+
+    public String insert(int index,String string){
+        if(index < 0 || index > this.customList.size()-1){
+            return String.format("Error: invalid index %d",index);
+        }
+        List<String> tempList = new ArrayList<>();
+
+        for (int i = 0; i < this.customList.size()-1; i++) {
+            if(index == i){
+                if(i == this.customList.size()-1){
+                    tempList.add(this.customList.get(i));
+                    tempList.add(string);
+                    break;
+                }
+                tempList.add(string);
+            }
+            tempList.add(this.customList.get(i));
+        }
+
+        this.customList = tempList;
+        return String.join(" ",this.customList);
+    }
 }

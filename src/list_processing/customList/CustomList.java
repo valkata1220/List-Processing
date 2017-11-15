@@ -22,4 +22,17 @@ public class CustomList {
         this.customList = reversedList;
         return String.join(" ",this.customList);
     }
+    public String append(String token){
+        List<String> appendList = new ArrayList<>();
+
+        for(int i=0; i<this.customList.size(); i++){
+            appendList.add(this.customList.get(i));
+        }
+        appendList.add(token);
+        this.customList = appendList;
+        return String.join(" ",this.customList);
+
+        
+
+    }
 }

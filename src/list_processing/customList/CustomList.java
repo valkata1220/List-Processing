@@ -131,6 +131,18 @@ public class CustomList {
   public String sort(){
         java.util.Collections.sort(this.customList);
         return String.join(" ",this.customList);
-    }
 }
 
+public String rollRight() {
+        int len = customList.size();
+
+        List<String> temp = new ArrayList<>();
+        temp.add(this.customList.get(len - 1));
+
+        for (int i = len - 1; i >= 1; i--) {
+            temp.add(this.customList.get(i - 1));
+        }
+        this.customList = temp;
+        return String.join(" ", this.customList);
+    }
+}

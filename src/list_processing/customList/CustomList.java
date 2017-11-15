@@ -86,83 +86,25 @@ public class CustomList {
         return String.join(" ", this.customList);
     }
 
-    public String delete(int index){
+    public String delete(int index) {
         if (index < 0 || index > this.customList.size() - 1) {
             return String.format("Error: invalid index %d", index);
         }
         List<String> tempList = new ArrayList<>();
 
         for (int i = 0; i < this.customList.size() - 1; i++) {
-            if(index == i){
+            if (index == i) {
                 continue;
             }
             tempList.add(this.customList.get(i));
         }
 
         this.customList = tempList;
-        return String.join(" ",this.customList);
+        return String.join(" ", this.customList);
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public String rollLeft(){
+    public String rollLeft() {
         List<String> temp = new ArrayList<>();
         for (int i = 1; i < this.customList.size(); i++) {
 
@@ -173,6 +115,20 @@ public class CustomList {
         this.customList = temp;
 
 
+        return String.join(" ", this.customList);
+    }
+
+
+    public String rollRight() {
+        int len = customList.size();
+
+        List<String> temp = new ArrayList<>();
+        temp.add(this.customList.get(len - 1));
+
+        for (int i = len - 1; i >= 1; i--) {
+            temp.add(this.customList.get(i - 1));
+        }
+        this.customList = temp;
         return String.join(" ", this.customList);
     }
 }

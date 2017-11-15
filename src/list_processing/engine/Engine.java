@@ -12,7 +12,7 @@ public class Engine {
         this.outputReader = outputReader;
     }
 
-    public void run(){
-
+    public void run() {
+        String line = "";
     }
 }

@@ -86,6 +86,23 @@ public class CustomList {
         return String.join(" ", this.customList);
     }
 
+    public String delete(int index){
+        if (index < 0 || index > this.customList.size() - 1) {
+            return String.format("Error: invalid index %d", index);
+        }
+        List<String> tempList = new ArrayList<>();
+
+        for (int i = 0; i < this.customList.size() - 1; i++) {
+            if(index == i){
+                continue;
+            }
+            tempList.add(this.customList.get(i));
+        }
+
+        this.customList = tempList;
+        return String.join(" ",this.customList);
+    }
+
 
 
 

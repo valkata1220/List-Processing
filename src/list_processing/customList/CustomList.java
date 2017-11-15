@@ -86,4 +86,9 @@ public String append(String token){
         this.customList = tempList;
         return String.join(" ",this.customList);
     }
+
+    public String sort(){
+        java.util.Collections.sort(this.customList);
+        return String.join(" ",this.customList);
+    }
 }

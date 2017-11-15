@@ -103,23 +103,12 @@ public class CustomList {
         return String.join(" ", this.customList);
     }
 
+ public String sort(){
+        java.util.Collections.sort(this.customList);
+        return String.join(" ",this.customList);
+}
 
-    public String rollLeft() {
-        List<String> temp = new ArrayList<>();
-        for (int i = 1; i < this.customList.size(); i++) {
-
-            temp.add(this.customList.get(i));
-        }
-
-        temp.add(this.customList.get(0));
-        this.customList = temp;
-
-
-        return String.join(" ", this.customList);
-    }
-
-
-    public String rollRight() {
+public String rollRight() {
         int len = customList.size();
 
         List<String> temp = new ArrayList<>();

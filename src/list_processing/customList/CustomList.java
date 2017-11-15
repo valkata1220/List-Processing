@@ -105,62 +105,15 @@ public class CustomList {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public int count(String searcheWord){
+        int counter = 0;
+        for (String string : this.customList) {
+            if(string.equals(searcheWord)){
+                counter++;
+            }
+        }
+        return counter;
+    }
 
     public String rollLeft(){
         List<String> temp = new ArrayList<>();

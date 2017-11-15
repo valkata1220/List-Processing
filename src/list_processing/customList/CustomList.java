@@ -115,7 +115,7 @@ public class CustomList {
         return counter;
     }
 
-    public String rollLeft(){
+    public String rollLeft() {
         List<String> temp = new ArrayList<>();
         for (int i = 1; i < this.customList.size(); i++) {
 
@@ -128,4 +128,9 @@ public class CustomList {
 
         return String.join(" ", this.customList);
     }
+  public String sort(){
+        java.util.Collections.sort(this.customList);
+        return String.join(" ",this.customList);
+    }
 }
+

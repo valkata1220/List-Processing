@@ -11,22 +11,36 @@ public class CustomList {
         this.customList = new ArrayList<>();
     }
 
-    public String prepend(String inputToken) {
-        int len = this.customList.size() + 1;
-        String[] temp = new String[len];
+    public void inisializeCustomList(List<String> tokens) {
+        this.customList.addAll(tokens);
+    }
 
-        temp[0] = inputToken;
-
-        for (int i = 1; i < len - 1; i++) {
-
-            temp[1] = this.customList.get(1);
+    public String reverse() {
+        List<String> reversedList = new ArrayList<>();
+        for (int i = this.customList.size() - 1; i >= 0; i--) {
+            reversedList.add(this.customList.get(i));
         }
 
-        List<String> result = new ArrayList<>();
-        result.addAll(Arrays.asList(temp));
 
-        return String.join(" ", result);
+        public String prepend (String inputToken){
+            int len = this.customList.size() + 1;
+            String[] temp = new String[len];
+
+            temp[0] = inputToken;
+
+            for (int i = 1; i < len - 1; i++) {
+
+                temp[1] = this.customList.get(1);
+            }
+
+            List<String> result = new ArrayList<>();
+            result.addAll(Arrays.asList(temp));
+
+            this.customList = result;
 
         /* By Stefan - Java trainee */
+
+            return String.join(" ", this.customList);
+
+        }
     }
-}

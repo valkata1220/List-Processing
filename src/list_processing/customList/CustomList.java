@@ -1,10 +1,8 @@
 package list_processing.customList;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-public class CustomList {
+public class CustomList implements Iterable<String> {
     private List<String> customList;
 
     public CustomList() {
@@ -12,137 +10,81 @@ public class CustomList {
     }
 
 
-    public void inisializeCustomList(List<String> tokens) {
+    public void initializeCustomList(List<String> tokens) {
         this.customList.addAll(tokens);
     }
 
 
-    public String reverse() {
-        List<String> reversedList = new ArrayList<>();
-
-        for (int i = this.customList.size() - 1; i >= 0; i--) {
-            reversedList.add(this.customList.get(i));
-        }
-        this.customList = reversedList;
-
-        return String.join(" ", this.customList);
-
+    public void reverse() {
+        Collections.reverse(this.customList);
     }
 
-    public String prepend(String inputToken) {
-        int len = this.customList.size() + 1;
-        String[] temp = new String[len];
-
-        temp[0] = inputToken;
-
-        for (int i = 1; i < len - 1; i++) {
-
-            temp[1] = this.customList.get(1);
-        }
-
-        List<String> result = new ArrayList<>();
-        result.addAll(Arrays.asList(temp));
-
-        this.customList = result;
-
-        /* By Stefan - Java trainee */
-
-        return String.join(" ", this.customList);
-
+    public void prepend(String inputToken) {
+        this.customList.add(0, inputToken);
     }
 
-    public String append(String token) {
-        List<String> appendList = new ArrayList<>();
-
-        for (int i = 0; i < this.customList.size(); i++) {
-            appendList.add(this.customList.get(i));
-        }
-        appendList.add(token);
-        this.customList = appendList;
-        return String.join(" ", this.customList);
-
-
+    public void append(String token) {
+        this.customList.add(token);
     }
 
-    public String insert(int index, String string) {
-        if (index < 0 || index > this.customList.size() - 1) {
-            return String.format("Error: invalid index %d", index);
+    public void insert(int index, String string) {
+        try {
+            this.customList.add(index, string);
+        } catch (IndexOutOfBoundsException iobe) {
+            throw new IndexOutOfBoundsException(String.format("Error: invalid index %s", index));
         }
-        List<String> tempList = new ArrayList<>();
-
-        for (int i = 0; i < this.customList.size() - 1; i++) {
-            if (index == i) {
-                if (i == this.customList.size() - 1) {
-                    tempList.add(this.customList.get(i));
-                    tempList.add(string);
-                    break;
-                }
-                tempList.add(string);
-            }
-            tempList.add(this.customList.get(i));
-        }
-
-        this.customList = tempList;
-        return String.join(" ", this.customList);
     }
 
-    public String delete(int index){
-        if (index < 0 || index > this.customList.size() - 1) {
-            return String.format("Error: invalid index %d", index);
+    public void delete(int index) {
+        try {
+            this.customList.remove(index);
+        } catch (IndexOutOfBoundsException iobe) {
+            throw new IndexOutOfBoundsException(String.format("Error: invalid index %s", index));
         }
-        List<String> tempList = new ArrayList<>();
-
-        for (int i = 0; i < this.customList.size() - 1; i++) {
-            if(index == i){
-                continue;
-            }
-            tempList.add(this.customList.get(i));
-        }
-
-        this.customList = tempList;
-        return String.join(" ",this.customList);
     }
 
-
-
-    public int count(String searcheWord){
+    public int count(String searcheWord) {
         int counter = 0;
         for (String string : this.customList) {
-            if(string.equals(searcheWord)){
+            if (string.equals(searcheWord)) {
                 counter++;
             }
         }
         return counter;
     }
 
-    public String rollLeft() {
-        List<String> temp = new ArrayList<>();
-        for (int i = 1; i < this.customList.size(); i++) {
-
-            temp.add(this.customList.get(i));
+    public void rollLeft() {
+        String temp = this.customList.get(0);
+        for (int i = 0; i < this.customList.size() - 1; i++) {
+            String nextString = this.customList.get(i + 1);
+            this.customList.set(i, nextString);
         }
 
-        temp.add(this.customList.get(0));
-        this.customList = temp;
-
-
-        return String.join(" ", this.customList);
+        this.customList.set(this.customList.size() - 1, temp);
     }
-  public String sort(){
-        java.util.Collections.sort(this.customList);
-        return String.join(" ",this.customList);
-}
 
-public String rollRight() {
-        int len = customList.size();
+    public void sort() {
+        Collections.sort(this.customList);
+    }
 
-        List<String> temp = new ArrayList<>();
-        temp.add(this.customList.get(len - 1));
+    public void rollRight() {
+        String temp = this.customList.get(this.customList.size() - 1);
 
-        for (int i = len - 1; i >= 1; i--) {
-            temp.add(this.customList.get(i - 1));
+        for (int i = this.customList.size() - 1; i > 0; i--) {
+            String previousString = this.customList.get(i - 1);
+            this.customList.set(i, previousString);
         }
-        this.customList = temp;
+
+        this.customList.set(0, temp);
+    }
+
+    @Override
+    public Iterator<String> iterator() {
+        return this.customList.iterator();
+    }
+
+    @Override
+    public String toString() {
         return String.join(" ", this.customList);
     }
 }

@@ -12,6 +12,7 @@ public class Engine {
     private ConsoleInputReader inputReader;
     private ConsoleOutputReader outputReader;
     private CustomList customList;
+    private CommandInterpreter commandInterpreter = new CommandInterpreter();
 
     public Engine(ConsoleInputReader inputReader, ConsoleOutputReader outputReader, CustomList customList) {
         this.inputReader = inputReader;
@@ -22,19 +23,16 @@ public class Engine {
     public void run() {
         String line = this.inputReader.readLine();
         List<String> firstList = Arrays.stream(line.split("\\s+")).collect(Collectors.toList());
-        this.customList.inisializeCustomList(firstList);
+        this.customList.initializeCustomList(firstList);
 
         while (true) {
             line = this.inputReader.readLine();
-            String[] tokkens = line.split("\\s+");
-            executeCommand(tokkens);
-            if ("end".equals(line)) {
+            String[] tokens = line.split("\\s+");
+
+            this.outputReader.write(this.commandInterpreter.interpret(tokens, this.customList));
+
+            if ("end".equals(line))
                 break;
-            }
         }
-    }
-
-    private void executeCommand(String[] tokkens) {
-
     }
 }
